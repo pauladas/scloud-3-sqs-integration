@@ -9,3 +9,10 @@ spring:
         static: us-east-1
       sqs:
         endpoint: http://localhost:4566
+
+cloud:
+  aws:
+    sqs:
+      first-queue: first-SQS
+      second-queue: second-SQS
+      third-queue: third-SQS

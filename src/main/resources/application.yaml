@@ -10,6 +10,9 @@ spring:
     aws:
       region:
         static: sa-east-1
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: SNAKE_CASE
 
 management:
   endpoint:
@@ -17,7 +20,7 @@ management:
       show-components: always
   endpoints:
     web:
-      scloud-3-sqs-integration: /v1/actuator
+      base-path: /v1/actuator
       exposure:
         include: health, info
 
