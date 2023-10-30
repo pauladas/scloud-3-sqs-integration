@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /scloud-3-sqs-integration
+
+spring:
+  profiles:
+    active: ${PROFILE:}
+  cloud:
+    aws:
+      region:
+        static: sa-east-1
+
+management:
+  endpoint:
+    health:
+      show-components: always
+  endpoints:
+    web:
+      scloud-3-sqs-integration: /v1/actuator
+      exposure:
+        include: health, info
+
+logging:
+  file:
+    path: .
+    name: scloud-3-sqs-integration.log
+  level:
+    root: info
+    org:
+      springframework:
+        web: info
+    br:
+      com:
+        paulojof: debug

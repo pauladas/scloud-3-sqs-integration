@@ -1,0 +1,17 @@
+{
+  "name":"John",
+  "age":30,
+  "car":null,
+  "family": [
+    {
+      "name": "Mary",
+      "age": 34,
+      "car": "Meriva"
+    },
+    {
+      "name": "Donald",
+      "age": 73,
+      "nicknames": ["D", "Grampa", "Don"]
+    }
+  ]
+}
