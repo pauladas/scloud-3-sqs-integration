@@ -16,6 +16,14 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 2. Subir os containeres `docker compose up`
 3. Executar o serviço, com profile `loc`
 
+## Objetivo
+
+Após a execução do serviço, verifique nos logs. Há 3 exemplos, contendo 3 filas:
+
+1. Recebendo a mensagem como String (como realizar parse da mensagem e tratamento)
+2. Recebendo a mensagem como Message (Objeto da própria AWS SDK, as vantagens)
+3. Recebendo a mensagem como o DTO (vantagens de recepcionamento e desvantagens)
+
 ## 📝 Licença
 
 Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.

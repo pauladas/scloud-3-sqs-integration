@@ -19,7 +19,7 @@ public class CustomSqsClient {
         log.info("Sending message to SQS queue: {}", sqsUrl);
         try {
             sqsTemplate.send(sqsUrl, JsonParser.objectToStringJson(sqsMessage));
-            log.info("Message sent to queue.");
+            log.info("Message sent to {} queue.", sqsUrl);
         } catch (Exception e) {
             log.error("Error when sending message to SQS: {} - Message: {}", sqsUrl, e.getMessage(), e);
             throw new SqsClientException(e.getMessage());
@@ -30,7 +30,7 @@ public class CustomSqsClient {
         log.info("Sending message to SQS queue: {}", sqsUrl);
         try {
             sqsTemplate.send(sqsUrl, sqsMessage);
-            log.info("Message sent to queue.");
+            log.info("Message sent to {} queue.", sqsUrl);
         } catch (Exception e) {
             log.error("Error when sending message to SQS: {} - Message: {}", sqsUrl, e.getMessage(), e);
             throw new SqsClientException(e.getMessage());

@@ -1,11 +1,13 @@
 spring:
-  jpa:
-    hibernate:
-      ddl-auto: none
-  datasource:
-    url: jdbc:h2:mem:db_archetype
-    username: root
-    password: root
-    driver-class-name: org.h2.Driver
-  flyway:
-    enabled: false
+  cloud:
+    aws:
+      endpoint:
+      sqs:
+        enabled: false
+
+cloud:
+  aws:
+    sqs:
+      first-queue:
+      second-queue:
+      third-queue:
