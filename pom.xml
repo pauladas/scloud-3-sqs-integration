@@ -126,7 +126,7 @@
                             <excludes>
                                 <exclude>**/*Application.*</exclude>
                                 <exclude>**/controller/ControllerAdvice.*</exclude>
-                                <exclude>**/service/client.*</exclude>
+                                <exclude>**/service/client/*</exclude>
                                 <exclude>**/enumeration/**</exclude>
                                 <exclude>**/exception/**</exclude>
                                 <exclude>**/model/**</exclude>
@@ -146,7 +146,7 @@
                             <excludes>
                                 <exclude>**/*Application.*</exclude>
                                 <exclude>**/controller/ControllerAdvice.*</exclude>
-                                <exclude>**/service/client.*</exclude>
+                                <exclude>**/service/client/*</exclude>
                                 <exclude>**/enumeration/**</exclude>
                                 <exclude>**/exception/**</exclude>
                                 <exclude>**/model/**</exclude>

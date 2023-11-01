@@ -19,7 +19,7 @@ public class SecondQueueService {
 
     private final ApplicationConfig applicationConfig;
 
-    public void processFirstQueueMessage(SecondQueueDTO dto) {
+    public void processSecondQueueMessage(SecondQueueDTO dto) {
         try {
             log.info("Message received Person with name {}, age {},car {} and {} family members",
                     dto.getPersonName(), dto.getPersonAge(), dto.getPersonCar(), dto.getPersonsFamily().size());

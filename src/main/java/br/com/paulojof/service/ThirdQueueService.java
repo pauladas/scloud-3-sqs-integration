@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class ThirdQueueService {
 
-    public void processFirstQueueMessage(ThirdQueueDTO dto) {
+    public void processThirdQueueMessage(ThirdQueueDTO dto) {
         try {
             ThirdQueuePersonDTO person = dto.getPerson();
             List<ThirdQueueFamilyDTO> familyList = dto.getFamily();
