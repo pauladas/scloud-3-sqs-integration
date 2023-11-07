@@ -16,9 +16,9 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ThirdQueue2DTO {
 
-    private ThirdQueuePersonDTO person;
+    private Object person;
 
-    private List<ThirdQueueFamilyDTO> family;
+    private List<String> family;
 
     public String toString() {
         return JsonParser.objectToStringJson(this);
@@ -26,10 +26,11 @@ public class ThirdQueue2DTO {
 
     public static ThirdQueue2DTO valueOf(SecondQueueDTO secondQueueDTO) {
         ThirdQueuePersonDTO personDTO = ThirdQueuePersonDTO.valueOf(secondQueueDTO);
-        List<ThirdQueueFamilyDTO> familyList = secondQueueDTO.getPersonsFamily().stream()
+        List<String> familyStringList = secondQueueDTO.getPersonsFamily().stream()
                 .map(ThirdQueueFamilyDTO::valueOf)
+                .map(ThirdQueueFamilyDTO::toString)
                 .toList();
-        return new ThirdQueue2DTO(personDTO, familyList);
+        return new ThirdQueue2DTO(personDTO, familyStringList);
     }
 
 }

@@ -27,10 +27,10 @@ public class SecondQueueService {
             ThirdQueueDTO thirdQueueDTO = ThirdQueueDTO.valueOf(dto);
             sqsClient.sendToSqs(thirdQueueDTO, applicationConfig.getSqsThirdQueueName());
 
-            log.info("Sending, now, dto as String...");
+            log.info("Sending, now, dto as String (to force exception)...");
             sqsClient.sendToSqsAsString(thirdQueueDTO, applicationConfig.getSqsThirdQueueName());
 
-            log.info("Sending, now, a different dto class...");
+            log.info("Sending, now, a different dto class (to force exception)...");
             ThirdQueue2DTO thirdQueue2DTO = ThirdQueue2DTO.valueOf(dto);
             sqsClient.sendToSqs(thirdQueue2DTO, applicationConfig.getSqsThirdQueueName());
         } catch (Exception e) {
