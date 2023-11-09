@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.com.paulojof.exception.ThirdQueueException;
 import br.com.paulojof.model.ThirdQueueDTO;
 import br.com.paulojof.model.ThirdQueueFamilyDTO;
 import br.com.paulojof.model.ThirdQueuePersonDTO;
@@ -15,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class ThirdQueueService {
 
-    public void processThirdQueueMessage(ThirdQueueDTO dto) {
+    public void processThirdQueueMessage(ThirdQueueDTO dto) throws ThirdQueueException {
         try {
             ThirdQueuePersonDTO person = dto.getPerson();
             List<ThirdQueueFamilyDTO> familyList = dto.getFamily();
@@ -23,7 +24,7 @@ public class ThirdQueueService {
                     person.getName(), person.getAge(), person.getCar(), familyList.size());
         } catch (Exception e) {
             log.error("Error while trying to process first-queue message. {}", e.getMessage(), e);
-            throw new RuntimeException("Error processing third queue message...");
+            throw new ThirdQueueException("Error processing third queue message...");
         }
     }
 
