@@ -20,6 +20,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.paulojof.configuration.ApplicationConfig;
+import br.com.paulojof.exception.SecondQueueException;
 import br.com.paulojof.exception.SqsClientException;
 import br.com.paulojof.model.SecondQueueDTO;
 import br.com.paulojof.model.SecondQueueFamilyDTO;
@@ -56,7 +57,7 @@ public class SecondQueueServiceTest {
         givenSecondQueueDTO();
         givenApplicationConfigGetSqsThirdQueueName();
         givenSqsClientSendToSqsRunsThrowsSqsClientException();
-        whenProcessSecondQueueMessageThrowsRunException();
+        whenProcessSecondQueueMessageThrowsSecondQueueException();
         thenExpectSqsClientSendToSqsCalledCalledOnce();
         thenExpectSqsClientSendToSqsAsStringNotCalled();
         thenExpectApplicationConfigGetSqsThirdQueueNameCalledOnce();
@@ -84,12 +85,12 @@ public class SecondQueueServiceTest {
     }
 
     // WHEN
-    private void whenProcessSecondQueueMessage() {
+    private void whenProcessSecondQueueMessage() throws SecondQueueException {
         secondQueueService.processSecondQueueMessage(secondQueueDTO);
     }
 
-    private void whenProcessSecondQueueMessageThrowsRunException() {
-        assertThrows(RuntimeException.class, () -> secondQueueService.processSecondQueueMessage(secondQueueDTO));
+    private void whenProcessSecondQueueMessageThrowsSecondQueueException() {
+        assertThrows(SecondQueueException.class, () -> secondQueueService.processSecondQueueMessage(secondQueueDTO));
     }
 
     // THEN

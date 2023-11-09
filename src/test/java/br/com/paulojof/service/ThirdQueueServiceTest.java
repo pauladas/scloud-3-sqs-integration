@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import br.com.paulojof.exception.ThirdQueueException;
 import br.com.paulojof.model.ThirdQueueDTO;
 import br.com.paulojof.model.ThirdQueueFamilyDTO;
 import br.com.paulojof.model.ThirdQueuePersonDTO;
@@ -23,15 +24,15 @@ public class ThirdQueueServiceTest {
     private ThirdQueueDTO thirdQueueDTO;
 
     @Test
-    public void shouldProcessThirdQueueMessage() throws Exception {
+    public void shouldProcessThirdQueueMessage() throws ThirdQueueException {
         givenThirdQueueDTO();
         whenProcessThirdQueueMessage();
     }
 
     @Test
-    public void shouldNotProcessThirdQueueMessage() throws Exception {
+    public void shouldNotProcessThirdQueueMessage() {
         givenNullThirdQueueDTO();
-        whenProcessThirdQueueMessageThrowsRuntimeException();
+        whenProcessThirdQueueMessageThrowsThirdQueueException();
     }
 
     // GIVEN
@@ -44,12 +45,12 @@ public class ThirdQueueServiceTest {
     }
 
     // WHEN
-    private void whenProcessThirdQueueMessage() {
+    private void whenProcessThirdQueueMessage() throws ThirdQueueException {
         thirdQueueService.processThirdQueueMessage(thirdQueueDTO);
     }
 
-    private void whenProcessThirdQueueMessageThrowsRuntimeException() {
-        assertThrows(RuntimeException.class, () -> thirdQueueService.processThirdQueueMessage(thirdQueueDTO));
+    private void whenProcessThirdQueueMessageThrowsThirdQueueException() {
+        assertThrows(ThirdQueueException.class, () -> thirdQueueService.processThirdQueueMessage(thirdQueueDTO));
     }
 
     // THEN

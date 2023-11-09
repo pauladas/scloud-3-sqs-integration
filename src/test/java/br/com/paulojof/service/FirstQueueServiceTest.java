@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.paulojof.configuration.ApplicationConfig;
+import br.com.paulojof.exception.FirstQueueException;
 import br.com.paulojof.exception.SqsClientException;
 import br.com.paulojof.model.FirstQueueDTO;
 import br.com.paulojof.model.FirstQueueFamilyDTO;
@@ -52,7 +53,7 @@ public class FirstQueueServiceTest {
         givenFirstQueueDTO();
         givenApplicationConfigGetSqsSecondQueueName();
         givenSqsClientSendToSqsAsStringThrowsSqsClientException();
-        whenProcessFirstQueueMessageThrowsRunException();
+        whenProcessFirstQueueMessageThrowsFirstQueueException();
         thenExpectApplicationConfigGetSqsSecondQueueNameCalledOnce();
         thenExpectSqsClientSendToSqsAsStringCalledOnce();
     }
@@ -75,12 +76,12 @@ public class FirstQueueServiceTest {
     }
 
     // WHEN
-    private void whenProcessFirstQueueMessage() {
+    private void whenProcessFirstQueueMessage() throws FirstQueueException {
         firstQueueService.processFirstQueueMessage(firstQueueDTO);
     }
 
-    private void whenProcessFirstQueueMessageThrowsRunException() {
-        assertThrows(RuntimeException.class, () -> firstQueueService.processFirstQueueMessage(firstQueueDTO));
+    private void whenProcessFirstQueueMessageThrowsFirstQueueException() {
+        assertThrows(FirstQueueException.class, () -> firstQueueService.processFirstQueueMessage(firstQueueDTO));
     }
 
     // THEN
